@@ -36,9 +36,12 @@ public class AsteroidsGame extends Game.Default {
 		layer.add(graphics().createImmediateLayer(new StarRenderer(clock)));
 
 		// add Player
-
 		IEntity ship = new Ship();
 		gameListener.onCreate(new CreateEvent(this, ship));
+                
+                // add Enemy
+                IEntity enemy = new EnemyShip();
+                gameListener.onCreate(new CreateEvent(this, enemy));
 	}
 
 	@Override
