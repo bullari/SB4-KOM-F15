@@ -29,7 +29,7 @@ public class Ship extends Entity {
 		view.setOrigin(shipImage.width() / 2f, shipImage.height() / 2f);
 
 		body = new Body(this);
-		body.x = graphics().width() / 2;
+		body.x = graphics().width() / 4;
 		body.y = graphics().height() / 2;
 		body.radius = shipImage.height() / 2f;
 
@@ -74,7 +74,7 @@ public class Ship extends Entity {
 		super.onUpdate(event);
 		if (space) {
 			weapon.fire();
-			space = false;
+			//space = false;
 		}
 
 		if (up)
@@ -95,16 +95,16 @@ public class Ship extends Entity {
 		@Override
 		public void onKeyDown(Keyboard.Event event) {
 			switch (event.key()) {
-			case A:
+			case LEFT:
 				left = true;
 				break;
-			case D:
+			case RIGHT:
 				right = true;
 				break;
-			case W:
+			case UP:
 				up = true;
 				break;
-			case S:
+			case DOWN:
 				down = true;
 				break;
 			case SPACE:
@@ -118,16 +118,16 @@ public class Ship extends Entity {
 		@Override
 		public void onKeyUp(Keyboard.Event event) {
 			switch (event.key()) {
-			case A:
+			case LEFT:
 				left = false;
 				break;
-			case D:
+			case RIGHT:
 				right = false;
 				break;
-			case W:
+			case UP:
 				up = false;
 				break;
-			case S:
+			case DOWN:
 				down = false;
 				break;
 			case SPACE:
