@@ -20,7 +20,7 @@ public class Gun extends Weapon {
 		bullet.body().y = (float) (entity.body().y + Math
 				.cos(entity.body().angle));
 		bullet.body().angle = entity.body().angle;
-		bullet.physics().thrust(10.0);
+		bullet.physics().thrust(20.0);
 
 		// events
 		for (IEntityListener l : entity.listeners()) {

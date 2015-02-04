@@ -43,15 +43,28 @@ public class EnemyShip extends Entity {
 
         weapon = new Gun(this);
 
-                // Events
+        // Events
         //PlayN.keyboard().setListener(this.spacebarListener);
     }
     public void randomShootAction() {
+        Random random = new Random();
+        int action = random.nextInt(2);
         
+        switch (action) {
+            case 0:
+                space = false;
+                break;
+            case 1:
+                space = true;
+                break;
+            default:
+                break;
+        }
     }
+    
     public void randomMovementAction(){
         Random random = new Random();
-        int action = random.nextInt(5);
+        int action = random.nextInt(4);
         
         switch (action) {
             case 0:
@@ -60,14 +73,7 @@ public class EnemyShip extends Entity {
             case 1:
                 right = true;
                 break;
-            case 2:
-                up = true;
-                break;
-            case 3:
-                down = true;
-                break;
-            case 4:
-                space = true;
+            default:
                 break;
         }
     }
@@ -98,6 +104,7 @@ public class EnemyShip extends Entity {
     @Override
     public void onUpdate(Events.UpdateEvent event) {
         super.onUpdate(event);
+        randomShootAction();
         randomMovementAction();
         
         if (space) {
@@ -105,11 +112,12 @@ public class EnemyShip extends Entity {
             space = false;
         }
 
-        if (up) {
-            physics.thrust(1.0);
-            up = false;
-        }
-
+//        if (up) {
+//            physics.thrust(1.0);
+//            up = false;
+//        }
+        physics.thrust(1.0);
+        
         if (down) {
             physics.thrust(-1.0);
             down = false;
@@ -125,6 +133,9 @@ public class EnemyShip extends Entity {
             right = false;
         }
     }
+    /**
+     * Currently not used since the enemy ship is controlled by the computer
+     */
     private final Keyboard.Listener spacebarListener = new Keyboard.Adapter() {
 
         @Override
