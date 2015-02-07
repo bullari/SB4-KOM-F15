@@ -12,7 +12,7 @@ public class Gun extends Weapon {
 	}
 
 	@Override
-	public void fire() {
+	public void fire(double thrust) {
 
 		Bullet bullet = new Bullet();
 		bullet.body().x = (float) (entity.body().x + Math
@@ -20,14 +20,14 @@ public class Gun extends Weapon {
 		bullet.body().y = (float) (entity.body().y + Math
 				.cos(entity.body().angle));
 		bullet.body().angle = entity.body().angle;
-		bullet.physics().thrust(20.0);
+		bullet.physics().thrust(thrust);
 
 		// events
 		for (IEntityListener l : entity.listeners()) {
 			l.onCreate(new CreateEvent(this, bullet));
 		}
 
-		super.fire();
+		super.fire(thrust);
 	}
 
 }

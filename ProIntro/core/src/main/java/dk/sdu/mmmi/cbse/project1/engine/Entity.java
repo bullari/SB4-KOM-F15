@@ -17,7 +17,7 @@ public class Entity implements IEntity {
     public Body body;
     public Physics physics;
     public Health health;
-    public Weapon weapon;
+    public Weapon forwardWeapon;
     public ImageLayer view;
     protected final List<IEntityListener> listenerList;
 
@@ -67,7 +67,7 @@ public class Entity implements IEntity {
 
     @Override
     public Weapon getWeapon() {
-        return this.weapon;
+        return this.forwardWeapon;
     }
 
     @Override

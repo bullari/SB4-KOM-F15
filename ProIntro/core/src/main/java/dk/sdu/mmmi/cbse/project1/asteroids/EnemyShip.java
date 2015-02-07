@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.project1.engine.Body;
 import dk.sdu.mmmi.cbse.project1.engine.Entity;
 import dk.sdu.mmmi.cbse.project1.engine.Health;
 import dk.sdu.mmmi.cbse.project1.engine.Physics;
+import dk.sdu.mmmi.cbse.project1.engine.Weapon;
 import dk.sdu.mmmi.cbse.project1.events.Events;
 import playn.core.Image;
 import playn.core.Keyboard;
@@ -24,6 +25,11 @@ public class EnemyShip extends Entity {
     private boolean space;
     private boolean up;
     protected boolean down;
+    
+    // TEMP
+    private Weapon backWeapon;
+    private double forwardWeaponThrust;
+    private double backWeaponThrust;
 
     public EnemyShip() {
         Image shipImage = assets().getImageSync("images/EnemyShip.png");
@@ -41,29 +47,32 @@ public class EnemyShip extends Entity {
         health = new Health(this);
         health.hits = 5;
 
-        weapon = new Gun(this);
+        forwardWeapon = new Gun(this);
+        this.forwardWeaponThrust = 20.0;
+        this.backWeapon = new Gun(this);
+        this.backWeaponThrust = -20.0;
 
         // Events
         //PlayN.keyboard().setListener(this.spacebarListener);
     }
     public void randomShootAction() {
         Random random = new Random();
-        int action = random.nextInt(2);
+        int action = random.nextInt(20);
         
         switch (action) {
             case 0:
-                space = false;
-                break;
-            case 1:
                 space = true;
                 break;
             default:
+                space = false;
                 break;
         }
     }
     
     public void randomMovementAction(){
         Random random = new Random();
+        // a range from 1-4 is chosen so that the ship doesnt move every single
+        // gamecycle, but rather on average every other cycle
         int action = random.nextInt(4);
         
         switch (action) {
@@ -108,7 +117,8 @@ public class EnemyShip extends Entity {
         randomMovementAction();
         
         if (space) {
-            weapon.fire();
+            forwardWeapon.fire(forwardWeaponThrust);
+            backWeapon.fire(backWeaponThrust);
             space = false;
         }
 

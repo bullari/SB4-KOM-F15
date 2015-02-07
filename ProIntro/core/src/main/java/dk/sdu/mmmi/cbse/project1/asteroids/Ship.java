@@ -21,6 +21,9 @@ public class Ship extends Entity {
 	private boolean space;
 	private boolean up;
 	protected boolean down;
+        
+        // TEMP
+        private double forwardWeaponThrust;
 
 	public Ship() {
 
@@ -39,7 +42,8 @@ public class Ship extends Entity {
 		health = new Health(this);
 		health.hits = 5;
 
-		weapon = new Gun(this);
+		forwardWeapon = new Gun(this);
+                forwardWeaponThrust = 20.0;
 
 		// Events
 		PlayN.keyboard().setListener(this.spacebarListener);
@@ -73,7 +77,7 @@ public class Ship extends Entity {
 	public void onUpdate(UpdateEvent event) {
 		super.onUpdate(event);
 		if (space) {
-			weapon.fire();
+			forwardWeapon.fire(forwardWeaponThrust);
 			//space = false;
 		}
 

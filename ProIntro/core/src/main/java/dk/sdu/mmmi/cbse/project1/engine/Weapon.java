@@ -12,7 +12,7 @@ public class Weapon {
 		this.entity = entity;
 	}
 
-	public void fire() {
+	public void fire(double thrust) {
 		ammo--;
 	}
 }
