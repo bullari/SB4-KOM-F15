@@ -23,6 +23,8 @@ public class SmallAsteroid extends Asteroid{
         Image asteroidImage = assets().getImageSync("images/Asteroid.png");
         view = graphics().createImageLayer(asteroidImage);
         view.setOrigin(asteroidImage.width() / 4, asteroidImage.height() / 4);
+        view.setSize(asteroidImage.width() / 4, asteroidImage.height() / 4);
+        view.transform();
         
         body = new Body(this);
         body.x = x;
@@ -31,7 +33,7 @@ public class SmallAsteroid extends Asteroid{
         body.radius = asteroidImage.height() / 4;
 
         physics = new Physics(this);
-        physics.thrust(8.0);
+        physics.thrust(5.0);
         
         health = new Health(this);
         health.hits = 5;

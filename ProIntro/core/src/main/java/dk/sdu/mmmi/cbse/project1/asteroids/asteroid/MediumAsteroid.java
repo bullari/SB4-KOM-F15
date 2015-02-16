@@ -19,22 +19,37 @@ import static playn.core.PlayN.graphics;
  */
 public class MediumAsteroid extends Asteroid {
     
+    private int age;
+    
     public MediumAsteroid(float x, float y, float angle){
         Image asteroidImage = assets().getImageSync("images/Asteroid.png");
         view = graphics().createImageLayer(asteroidImage);
-        view.setOrigin(asteroidImage.width() / 2, asteroidImage.height() / 2);
+        view.setOrigin(asteroidImage.width(), asteroidImage.height());
+        view.setSize(asteroidImage.width() / 2, asteroidImage.height() / 2);
+        view.transform();
         
         body = new Body(this);
         body.x = x;
         body.y = y;
         body.angle = angle;
-        body.radius = asteroidImage.height() / 2;
+        body.radius = asteroidImage.height() / 2f;
 
         physics = new Physics(this);
-        physics.thrust(4.0);
+        physics.thrust(5.0);
         
         health = new Health(this);
         health.hits = 10;
+    }
+    
+     @Override
+    public void onUpdate(Events.UpdateEvent event) {
+        super.onUpdate(event);
+
+        age++;
+
+        if (age > 100) {
+            onDied(new Events.DieEvent(this, this));
+        }
     }
     
     @Override
