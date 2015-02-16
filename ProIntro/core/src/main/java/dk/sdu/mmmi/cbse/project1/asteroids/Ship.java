@@ -40,7 +40,7 @@ public class Ship extends Entity {
 		physics.drag = 0.9;
 
 		health = new Health(this);
-		health.hits = 5;
+		health.hits = 100;
 
 		forwardWeapon = new Gun(this);
                 forwardWeaponThrust = 20.0;
@@ -75,7 +75,7 @@ public class Ship extends Entity {
 
 	@Override
 	public void onUpdate(UpdateEvent event) {
-		super.onUpdate(event);
+                super.onUpdate(event);
 		if (space) {
 			forwardWeapon.fire(forwardWeaponThrust);
 			//space = false;

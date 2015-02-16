@@ -1,5 +1,6 @@
 package dk.sdu.mmmi.cbse.project1.asteroids;
 
+import dk.sdu.mmmi.cbse.project1.asteroids.asteroid.LargeAsteroid;
 import static playn.core.PlayN.graphics;
 
 import java.util.ArrayList;
@@ -42,6 +43,10 @@ public class AsteroidsGame extends Game.Default {
                 // add Enemy
                 IEntity enemy = new EnemyShip();
                 gameListener.onCreate(new CreateEvent(this, enemy));
+                
+                //add a single large asteroid
+                IEntity asteroid = new LargeAsteroid();
+                gameListener.onCreate(new CreateEvent(this, asteroid));
 	}
 
 	@Override
